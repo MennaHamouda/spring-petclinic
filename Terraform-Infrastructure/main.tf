@@ -31,6 +31,7 @@ module "eks" {
   endpoint_public_access_cidrs = var.endpoint_public_access_cidrs
   node_group_config            = var.node_group_config
   tags                         = var.common_tags
+  velero_environment           = var.velero_environment
 }
 
 module "bastion_host" {

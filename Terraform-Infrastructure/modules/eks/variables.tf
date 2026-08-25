@@ -59,3 +59,9 @@ variable "oidc_providers" {
   description = "ARN of the cluster autoscaler IAM role"
   type        = string
 }*/
+
+variable "velero_environment" {
+  description = "Environment name used for the Velero backup bucket"
+  type        = string
+  default     = "production"
+}

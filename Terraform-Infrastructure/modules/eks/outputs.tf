@@ -54,3 +54,23 @@ output "cluster_autoscaler_yaml_content" {
     aws_region                  = data.aws_region.current.region
   })
 }
+
+output "lb_controller_role_arn" {
+  description = "IAM role ARN for the AWS Load Balancer Controller Pod Identity association"
+  value       = aws_iam_role.lb_controller_pod_identity.arn
+}
+
+output "external_secrets_role_arn" {
+  description = "IAM role ARN for the External Secrets Pod Identity association"
+  value       = aws_iam_role.external_secrets_pod_identity.arn
+}
+
+output "velero_s3_bucket" {
+  description = "S3 bucket name used by Velero"
+  value       = aws_s3_bucket.velero.id
+}
+
+output "velero_irsa_role_arn" {
+  description = "IAM role ARN for the Velero Pod Identity association"
+  value       = aws_iam_role.velero_pod_identity.arn
+}

@@ -26,3 +26,24 @@ output "kubeconfig_command" {
   description = "Command to configure kubectl on bastion"
   value       = "aws eks update-kubeconfig --region ${var.aws_region} --name ${var.clustername}"
 }
+
+output "lb_controller_role_arn" {
+  description = "IAM role ARN for the AWS Load Balancer Controller Pod Identity association"
+  value       = module.eks.lb_controller_role_arn
+}
+
+output "external_secrets_role_arn" {
+  description = "IAM role ARN for the External Secrets Pod Identity association"
+  value       = module.eks.external_secrets_role_arn
+}
+
+
+output "velero_s3_bucket" {
+  description = "S3 bucket name used by Velero"
+  value       = module.eks.velero_s3_bucket
+}
+
+output "velero_irsa_role_arn" {
+  description = "IAM role ARN for the Velero Pod Identity association"
+  value       = module.eks.velero_irsa_role_arn
+}

@@ -9,6 +9,8 @@ module "eks" {
   vpc_id     = var.vpc_id
   subnet_ids = var.private_subnets_ids
 
+  create_cloudwatch_log_group = false
+
   endpoint_private_access      = var.endpoint_private_access
   endpoint_public_access       = var.endpoint_public_access
   endpoint_public_access_cidrs = var.endpoint_public_access_cidrs
@@ -101,6 +103,7 @@ module "cluster_autoscaler_irsa_role" {
 
   tags = var.tags
 }
+
 data "aws_region" "current" {}
 
 
