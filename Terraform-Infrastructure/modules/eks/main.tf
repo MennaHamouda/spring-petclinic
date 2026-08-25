@@ -9,8 +9,8 @@ module "eks" {
   vpc_id     = var.vpc_id
   subnet_ids = var.private_subnets_ids
 
-  endpoint_private_access      = true
-  endpoint_public_access       = true
+  endpoint_private_access      = var.endpoint_private_access
+  endpoint_public_access       = var.endpoint_public_access
   endpoint_public_access_cidrs = var.endpoint_public_access_cidrs
 
   enable_irsa = true

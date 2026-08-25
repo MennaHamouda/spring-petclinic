@@ -25,13 +25,25 @@ variable "vpc_cidr_block" {
 variable "private_subnet_cidr_blocks" {
   description = "CIDR blocks for private subnets"
   type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24","10.0.3.0/24"]
+  default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 }
 
 variable "public_subnet_cidr_blocks" {
   description = "CIDR blocks for public subnets"
   type        = list(string)
-  default     = ["10.0.4.0/24", "10.0.5.0/24","10.0.6.0/24"]
+  default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+}
+
+variable "endpoint_private_access" {
+  description = "Whether the Amazon EKS private API server endpoint is enabled"
+  type        = bool
+  default     = true
+}
+
+variable "endpoint_public_access" {
+  description = "Whether the Amazon EKS public API server endpoint is enabled"
+  type        = bool
+  default     = false
 }
 
 variable "endpoint_public_access_cidrs" {
@@ -79,10 +91,16 @@ variable "bastion_allowed_cidrs" {
   type        = list(string)
   default     = ["0.0.0.0/0"]
 }
+variable "ssh_private_key_path" {
+  description = "Path to SSH private key"
+  type        = string
+  default     = "~/.ssh/id_rsa"
+}
+
 variable "common_tags" {
   description = "Common tags to apply to all resources"
   type        = map(string)
-  default     = {
+  default = {
     Environment = "dev"
     Project     = "EKS-Cluster"
     ManagedBy   = "Terraform"

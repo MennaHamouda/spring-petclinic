@@ -14,9 +14,20 @@ variable "private_subnets_ids" {
   description = "List of private subnet IDs for the EKS cluster"
   type        = list(string)
 }
+variable "endpoint_private_access" {
+  description = "Whether the Amazon EKS private API server endpoint is enabled"
+  type        = bool
+  default     = true
+}
+variable "endpoint_public_access" {
+  description = "Whether the Amazon EKS public API server endpoint is enabled"
+  type        = bool
+  default     = false
+}
 variable "endpoint_public_access_cidrs" {
   description = "CIDRs for public access to the EKS cluster endpoint"
   type        = list(string)
+  default     = ["0.0.0.0/0"]
 }
 // Removed eks_admin_role_arn and cluster_autoscaler_role_arn variables. IAM resources are now created inside the module.
 variable "node_group_config" {

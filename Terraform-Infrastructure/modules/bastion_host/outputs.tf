@@ -20,7 +20,7 @@ output "security_group_id" {
 
 output "ssh_command" {
   description = "SSH command to connect to bastion"
-  value       = "ssh -i ~/.ssh/${var.key_pair_name}.pem ec2-user@${aws_instance.bastion.public_ip}"
+  value       = "ssh -i ${var.ssh_private_key_path} ec2-user@${aws_instance.bastion.public_ip}"
 }
 output "bastion_security_group_id" {
   description = "Security group ID of the bastion host"

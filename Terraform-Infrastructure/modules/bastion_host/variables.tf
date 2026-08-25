@@ -65,3 +65,8 @@ variable "cluster_autoscaler_yaml_content" {
   description = "Content of the cluster autoscaler YAML file"
   type        = string
 }
+
+variable "ssh_private_key_path" {
+  type        = string
+  description = "Path to SSH private key"
+}

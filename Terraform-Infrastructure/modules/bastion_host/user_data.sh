@@ -33,12 +33,17 @@ unzip -q /tmp/awscliv2.zip -d /tmp
 rm -rf /tmp/aws /tmp/awscliv2.zip
 
 
-# 4. Install kubectl
-curl -Lo /tmp/kubectl \
-  https://s3.us-west-2.amazonaws.com/amazon-eks/1.30.0/2024-05-12/bin/linux/amd64/kubectl
+# Install kubectl
+KUBECTL_VERSION=$(curl -fsSL https://dl.k8s.io/release/stable.txt)
 
-chmod +x /tmp/kubectl
-mv /tmp/kubectl /usr/local/bin/kubectl
+curl -fL -o /tmp/kubectl \
+  "https://dl.k8s.io/release/$${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
+
+install -o root -g root -m 0755 \
+  /tmp/kubectl \
+  /usr/local/bin/kubectl
+
+rm -f /tmp/kubectl
 
 
 # 5. Install Helm

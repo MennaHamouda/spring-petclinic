@@ -1,6 +1,6 @@
 output "vpc_id" {
   description = "VPC ID where the EKS cluster is deployed"
-  value = module.vpc.vpc_id
+  value       = module.vpc.vpc_id
 }
 output "eks_cluster_name" {
   description = "EKS cluster name"
@@ -24,5 +24,5 @@ output "bastion_ssh_command" {
 // Removed invalid eks_admin_user_name output. iam_roles module removed.
 output "kubeconfig_command" {
   description = "Command to configure kubectl on bastion"
-  value = "aws eks update-kubeconfig --region ${var.aws_region} --name ${var.clustername}"
+  value       = "aws eks update-kubeconfig --region ${var.aws_region} --name ${var.clustername}"
 }
