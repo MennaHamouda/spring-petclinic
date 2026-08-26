@@ -43,6 +43,13 @@ install -o root -g root -m 0755 \
   /tmp/kubectl \
   /usr/local/bin/kubectl
 
+# Export kubectl path for all users and current session
+export PATH=$PATH:/usr/local/bin
+echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
+source ~/.bashrc
+
+
+
 rm -f /tmp/kubectl
 
 
