@@ -19,7 +19,8 @@ resource "aws_iam_policy" "eks_admin" {
         Action = [
          "eks:*",
           "iam:ListRoles",
-          "iam:PassRole",
+          "iam:PassRole", 
+          "iam:GetRole",
           "ec2:DescribeSubnets",
           "ec2:DescribeVpcs",
           "ec2:DescribeSecurityGroups",
