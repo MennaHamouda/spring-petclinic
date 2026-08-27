@@ -65,3 +65,37 @@ variable "velero_environment" {
   type        = string
   default     = "production"
 }
+
+# ---------------------------------------------------------------------------
+# Petclinic DB secret variables (used by secrets.tf)
+# ---------------------------------------------------------------------------
+variable "petclinic_db_username" {
+  description = "PostgreSQL username stored in Secrets Manager"
+  type        = string
+  default     = "petclinic"
+}
+
+variable "petclinic_db_password" {
+  description = "PostgreSQL password stored in Secrets Manager (sensitive)"
+  type        = string
+  sensitive   = true
+  default     = "changeme"
+}
+
+variable "petclinic_db_name" {
+  description = "PostgreSQL database name"
+  type        = string
+  default     = "petclinic"
+}
+
+variable "petclinic_db_host" {
+  description = "K8s service hostname for PostgreSQL"
+  type        = string
+  default     = "petclinic-postgresql"
+}
+
+variable "petclinic_db_port" {
+  description = "PostgreSQL service port"
+  type        = number
+  default     = 5432
+}

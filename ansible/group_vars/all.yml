@@ -1,0 +1,18 @@
+eks_cluster_name: "myapp-eks-cluster"
+aws_region: "eu-central-1"
+kubeconfig_path: "/home/eks-manager/.kube/config"
+helm_binary_path: "/usr/local/bin/helm"
+
+# ---------------------------------------------------------------------------
+# Terraform outputs — update these after every `terraform apply` by running:
+#   terraform -chdir=Terraform-Infrastructure output -json | \
+#     jq '{vpc_id,lb_controller_role_arn,external_secrets_role_arn,
+#          velero_irsa_role_arn,velero_s3_bucket,eks_cluster_endpoint}'
+# ---------------------------------------------------------------------------
+vpc_id: "vpc-0e82e2e079399106f"
+eks_cluster_endpoint: "https://6A0B732492351F09491C04234C8EA894.gr7.eu-central-1.eks.amazonaws.com"
+lb_controller_role_arn: "arn:aws:iam::130299714330:role/myapp-eks-cluster-aws-lb-controller"
+external_secrets_role_arn: "arn:aws:iam::130299714330:role/myapp-eks-cluster-external-secrets"
+velero_irsa_role_arn: "arn:aws:iam::130299714330:role/myapp-eks-cluster-velero"
+velero_s3_bucket: "myapp-eks-cluster-velero-130299714330"
+

@@ -32,6 +32,13 @@ module "eks" {
   node_group_config            = var.node_group_config
   tags                         = var.common_tags
   velero_environment           = var.velero_environment
+
+  # Petclinic DB secret — stored in AWS Secrets Manager and synced by ESO
+  petclinic_db_username = var.petclinic_db_username
+  petclinic_db_password = var.petclinic_db_password
+  petclinic_db_name     = var.petclinic_db_name
+  petclinic_db_host     = var.petclinic_db_host
+  petclinic_db_port     = var.petclinic_db_port
 }
 
 module "bastion_host" {

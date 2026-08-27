@@ -47,3 +47,13 @@ output "velero_irsa_role_arn" {
   description = "IAM role ARN for the Velero Pod Identity association"
   value       = module.eks.velero_irsa_role_arn
 }
+
+output "petclinic_secret_arn" {
+  description = "ARN of the petclinic/database secret in AWS Secrets Manager"
+  value       = module.eks.petclinic_secret_arn
+}
+
+output "petclinic_secret_name" {
+  description = "Name of the petclinic/database secret in AWS Secrets Manager"
+  value       = module.eks.petclinic_secret_name
+}

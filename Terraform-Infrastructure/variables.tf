@@ -111,3 +111,39 @@ variable "velero_environment" {
   type        = string
   default     = "production"
 }
+
+# ---------------------------------------------------------------------------
+# Petclinic DB secret variables
+# These are written to AWS Secrets Manager by Terraform and read by ESO.
+# Override petclinic_db_password via env var: TF_VAR_petclinic_db_password
+# ---------------------------------------------------------------------------
+variable "petclinic_db_username" {
+  description = "PostgreSQL username for petclinic"
+  type        = string
+  default     = "petclinic"
+}
+
+variable "petclinic_db_password" {
+  description = "PostgreSQL password for petclinic (sensitive — override via TF_VAR or CI secret)"
+  type        = string
+  sensitive   = true
+  default     = "changeme"
+}
+
+variable "petclinic_db_name" {
+  description = "PostgreSQL database name"
+  type        = string
+  default     = "petclinic"
+}
+
+variable "petclinic_db_host" {
+  description = "Kubernetes service hostname for PostgreSQL (must match Helm chart service name)"
+  type        = string
+  default     = "petclinic-postgresql"
+}
+
+variable "petclinic_db_port" {
+  description = "PostgreSQL service port"
+  type        = number
+  default     = 5432
+}

@@ -1,0 +1,33 @@
+---
+# tasks file for argocd
+- name: Create argocd namespace
+  kubernetes.core.k8s:
+    kubeconfig: "{{ kubeconfig_path }}"
+    name: "{{ argocd_namespace }}"
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Add argo Helm repo
+  kubernetes.core.helm_repository:
+    name: argo
+    repo_url: https://argoproj.github.io/argo-helm
+    binary_path: "{{ helm_binary_path }}"
+
+- name: Copy Argo CD Helm values to bastion
+  ansible.builtin.copy:
+    src: values.yaml
+    dest: /tmp/argocd-values.yaml
+    mode: '0644'
+
+- name: Install/upgrade ArgoCD
+  kubernetes.core.helm:
+    name: argocd
+    chart_ref: argo/argo-cd
+    chart_version: "{{ argocd_chart_version }}"
+    release_namespace: "{{ argocd_namespace }}"
+    kubeconfig: "{{ kubeconfig_path }}"
+    binary_path: "{{ helm_binary_path }}"
+    values_files:
+      - /tmp/argocd-values.yaml
+    wait: true
